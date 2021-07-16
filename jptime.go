@@ -12,25 +12,6 @@ func Wrap(t time.Time) Jptime {
 	return Jptime{t}
 }
 
-// Compare はtimeパッケージのBefore/Afterのラッパーです
-// 不等号でどちらの時間が前か（後か）判断します
-// < > <= >= == の5種類を期待します
-func (j Jptime) Compare(operator string, t time.Time) bool {
-	switch operator {
-	case "<":
-		return j.Time.Before(t)
-	case ">":
-		return j.Time.After(t)
-	case "<=":
-		return !j.Time.After(t)
-	case ">=":
-		return !j.Time.Before(t)
-	case "==":
-		return j.Time.Equal(t)
-	}
-	return false
-}
-
 // IsHoliday は祝日かどうかを判定します
 func (j Jptime) IsHoliday() bool {
 	for _, holiday := range holidays {
